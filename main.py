@@ -43,7 +43,7 @@ def home():
         print('Player 1 Score: {}'.format(player1points))
         print('Player 2 Score: {}'.format(player2points))
         newgameprompt = input('Would you like to play another game? (Y/N)')
-        if newgameprompt == 'Y':
+        if newgameprompt == 'Y' or newgameprompt == 'y':
             continuegame()
         else:
             savedgameflag = False
@@ -139,13 +139,19 @@ def gamemech():
 def newgame():
     global player1sign
     global player2sign
+    inputflag = True
     print("Welcome to captainspockear's Tic Tac Toe!")
     sleep(1)
-    player1sign = input('Player 1 pls choose X or O. (X/O)')
-    if player1sign == 'X':
-        player2sign = 'O'
-    else:
-        player2sign = 'X'
+    while inputflag:
+        player1sign = input('Player 1 pls choose X or O. (X/O)')
+        if player1sign == 'X' or player1sign == 'x':
+            player2sign = 'O'
+            inputflag = False
+        elif player1sign == 'O' or player1sign == 'o' or player1sign == '0':
+            player2sign = 'X'
+            inputflag = False
+        else:
+            print("Invalid Input.")
 
     createbourd(eleList)
     gamemech()
